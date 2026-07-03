@@ -1,0 +1,35 @@
+﻿<Application x:Class="Orders.Management.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Orders.Management.UI"
+             xmlns:vm="clr-namespace:Orders.Management.UI.ViewModels"
+             xmlns:cp="clr-namespace:Orders.Management.UI.ViewModels.Counterparties"
+             xmlns:view="clr-namespace:Orders.Management.UI.Views"            
+             Startup="Application_Startup"
+             Exit="Application_Exit">
+    <Application.Resources>
+        <local:IconToImageSourceConverter x:Key="IconConverter"/>
+        <local:EnumToBooleanConverter x:Key="EnumToBoolConverter" />
+        <DataTemplate DataType="{x:Type vm:EditEmployeeViewModel}">
+            <view:EditEmployeeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateCounterpartyViewModel}">
+            <view:CreateCounterpartyView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EmployeePickViewModel}">
+            <view:EmployeePickView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditCounterpartyViewModel}">
+            <view:EditCounterpartyView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateOrderViewModel}">
+            <view:CreateOrderView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type cp:CounterpartyPickViewModel}">
+            <view:CounterpartyPickView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditOrderViewModel}">
+            <view:EditOrderView />
+        </DataTemplate>
+    </Application.Resources>
+</Application>

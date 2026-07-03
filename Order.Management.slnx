@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Orders.Management.Application/Orders.Management.Application.csproj" Id="ed005464-c3e2-4e58-afdf-5b4558e00d37" />
+    <Project Path="src/Orders.Management.Domain/Orders.Management.Domain.csproj" Id="1ca11871-b652-407e-ad32-1ba444f1107f" />
+    <Project Path="src/Shared/Shared.csproj" Id="af086380-1456-4e78-8939-388afea6856e" />
+  </Folder>
+  <Folder Name="/src/Persistence/">
+    <Project Path="src/Orders.Management.Persistence.Mapping/Orders.Management.Persistence.Mapping.csproj" Id="a17e054f-6990-4d6b-98e4-b752f6a5a0fb" />
+    <Project Path="src/Orders.Management.Persistence.MySql/Orders.Management.Persistence.MySql.csproj" Id="65bb11e0-bdc1-4466-81d8-e6a5ab0f66ea" />
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="src/Orders.Management.UI/Orders.Management.UI.csproj" Id="51a164f0-7926-4e17-b85e-21f7aab2cf83" />
+  </Folder>
+</Solution>

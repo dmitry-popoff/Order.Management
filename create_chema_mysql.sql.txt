@@ -1,0 +1,58 @@
+CREATE SCHEMA orders_db;
+
+use orders_db;
+    
+    create table counterparties (
+        id BIGINT NOT NULL AUTO_INCREMENT,
+       title VARCHAR(100) not null unique,
+       taxpayer_identification_number VARCHAR(50) not null unique,
+       deleted_at DATETIME(6),
+       curator_id BIGINT,
+       primary key (id)
+    );
+
+    create table employees (
+        id BIGINT NOT NULL AUTO_INCREMENT,
+       name VARCHAR(100) not null,
+       surname VARCHAR(100) not null,
+       patronymic VARCHAR(100) not null,
+       position VARCHAR(100) not null,
+       birth_date DATETIME(6) not null,
+       deleted_at DATETIME(6),
+       primary key (id)
+    );
+
+    create table orders (
+        Id BIGINT NOT NULL AUTO_INCREMENT,
+       sum DECIMAL(18,2) not null,
+	created_at DATETIME(6) not null,
+       deleted_at DATETIME(6),
+       employee_id BIGINT,
+       counterparty_id BIGINT not null,
+       primary key (Id)
+    );
+
+    create index idx_title_counterparties on counterparties (title);
+
+    create index idx_tin_counterparties on counterparties (taxpayer_identification_number);
+
+    alter table counterparties 
+        add index (curator_id), 
+        add constraint fk_counterparties_employees
+        foreign key (curator_id) 
+        references employees (id);
+
+    create index idx_surname_employees on employees (surname);
+
+    alter table orders 
+        add index (employee_id), 
+        add constraint fk_orders_employees 
+        foreign key (employee_id) 
+        references employees (id);
+
+    alter table orders 
+        add index (counterparty_id), 
+        add constraint fk_orders_counterparties 
+        foreign key (counterparty_id) 
+        references counterparties (id);
+
