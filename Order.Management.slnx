@@ -1,7 +1,11 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Orders.Management.Application/Orders.Management.Application.csproj" Id="ed005464-c3e2-4e58-afdf-5b4558e00d37" />
     <Project Path="src/Orders.Management.Domain/Orders.Management.Domain.csproj" Id="1ca11871-b652-407e-ad32-1ba444f1107f" />
+    <Project Path="src/Orders.Management.Migrations/Orders.Management.Migrations.csproj" />
     <Project Path="src/Shared/Shared.csproj" Id="af086380-1456-4e78-8939-388afea6856e" />
   </Folder>
   <Folder Name="/src/Persistence/">

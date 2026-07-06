@@ -149,10 +149,16 @@ public partial class EditOrderViewModel: ObservableValidator
     private async void PickEmployee()
     {
         _dialogService.ShowDialog(_employeePick);
-
-        Details.EmployeeId = _employeePick.Current.Id;
-        EmployeeName = _employeePick.Current.FullName;
-        EmployeeId = _employeePick.Current.Id;
+        if (_employeePick.Current is not null)
+        {
+            Details.EmployeeId = _employeePick.Current.Id;
+            EmployeeName = _employeePick.Current.FullName;
+            EmployeeId = _employeePick.Current.Id;
+        }
+        else
+        {
+            _dialogService.ShowMessageBox("No Employee was selected!");
+        }
     }    
 }
 

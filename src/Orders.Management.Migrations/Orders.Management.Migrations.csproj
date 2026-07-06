@@ -7,4 +7,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="scripts/**/*.sql" />
+  </ItemGroup>	
+
+  <ItemGroup>
+    <PackageReference Include="dbup-mysql" Version="6.1.0" />
+  </ItemGroup>	
+
+  <ItemGroup>
+    <Folder Include="Scripts\MySql\" />
+  </ItemGroup>
+
 </Project>

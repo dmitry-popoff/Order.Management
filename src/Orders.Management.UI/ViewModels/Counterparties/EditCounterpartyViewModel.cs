@@ -118,9 +118,15 @@ public partial class EditCounterpartyViewModel : ObservableValidator
     private async void PickCurator()
     {
         _dialogService.ShowDialog(_employeePick);
-
-        CuratorId = _employeePick.Current.Id;
-        CuratorFullName = _employeePick.Current.FullName;
-        CuratorPosition = _employeePick.Current.Position.ToString();
+        if (_employeePick.Current is not null)
+        {
+            CuratorId = _employeePick.Current.Id;
+            CuratorFullName = _employeePick.Current.FullName;
+            CuratorPosition = _employeePick.Current.Position.ToString();
+        }
+        else
+        {
+            _dialogService.ShowMessageBox("No Employee was selected!");
+        }
     }
 }

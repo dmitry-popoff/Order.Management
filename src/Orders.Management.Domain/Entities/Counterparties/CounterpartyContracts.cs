@@ -43,6 +43,8 @@ public partial class CounterpartyContracts
         public static Func<string, bool> TaxpayerIdentificationNumberSpecification =>
             static number =>
                 string.IsNullOrWhiteSpace(number) is false
+                &&  (number.Length >= 10 && number.Length <= 12)
+                && number.All(x => char.IsDigit(x))
                 && (validator.ValidateIndividualTaxCode(number, Country.RU).IsValid
                     || validator.ValidateNationalIdentityCode(number, Country.RU).IsValid);
     }
