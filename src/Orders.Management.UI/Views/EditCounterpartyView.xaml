@@ -21,7 +21,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="20">
             <TextBlock Text="Title:"  FontWeight="Bold"/>
-            <TextBlock Text="{Binding Details.Title}"/>
+            <TextBlock Text="{Binding Details.Title}" 
+                       PreviewTextInput="LettersOnlyTextBox_PreviewTextInput" 
+                        DataObject.Pasting="LettersOnlyTextBox_Pasting"/>
             <TextBlock Text="Taxpayer Identification Number:"  FontWeight="Bold"/>
             <TextBlock Text="{Binding Details.TaxpayerIdentificationNumber}"/>
             <TextBlock Text="Curator:"  FontWeight="Bold"/>

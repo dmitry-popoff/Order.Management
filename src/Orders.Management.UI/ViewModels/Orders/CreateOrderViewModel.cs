@@ -155,9 +155,17 @@ public partial class CreateOrderViewModel : ObservableValidator
     {
         _dialogService.ShowDialog(_employeePick);
 
-        Details.EmployeeId = _employeePick.Current.Id;
-        EmployeeName = _employeePick.Current.FullName;
-        EmployeeId = _employeePick.Current.Id;
+        if (_employeePick.Current is not null)
+        {
+
+            Details.EmployeeId = _employeePick.Current.Id;
+            EmployeeName = _employeePick.Current.FullName;
+            EmployeeId = _employeePick.Current.Id;
+        }
+        else
+        {
+            _dialogService.ShowMessageBox("No Employee was selected!");
+        }        
     }
 
     [RelayCommand]
@@ -165,10 +173,17 @@ public partial class CreateOrderViewModel : ObservableValidator
     {
         _dialogService.ShowDialog(_counterpartePick);
 
-        Details.CounterpartyId = _counterpartePick.Current.Id;
-        CounterpartyTitle = _counterpartePick.Current.Title;
-        TaxpayerId = _counterpartePick.Current.TaxpayerIdentificationNumber;
-        CounterpartyId = _counterpartePick.Current.Id;
+        if (_counterpartePick.Current is not null)
+        {
+            Details.CounterpartyId = _counterpartePick.Current.Id;
+            CounterpartyTitle = _counterpartePick.Current.Title;
+            TaxpayerId = _counterpartePick.Current.TaxpayerIdentificationNumber;
+            CounterpartyId = _counterpartePick.Current.Id;
+        }
+        else
+        {
+            _dialogService.ShowMessageBox("No Counterparty was selected!");
+        }
     }
 }
 

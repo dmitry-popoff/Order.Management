@@ -29,6 +29,7 @@ public partial class CreateCounterpartyViewModel : ObservableValidator
     [CustomValidation(typeof(CreateCounterpartyViewModel), nameof(ValidateTitle))]
     private string _title;
     [Required]
+    [MinLength(10)]
     [MaxLength(12)]
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -155,6 +156,13 @@ public partial class CreateCounterpartyViewModel : ObservableValidator
     {
         _dialogService.ShowDialog(_employeePick);
 
-        CuratorId = _employeePick.Current.Id;
+        if(_employeePick.Current is not null)
+        {
+            CuratorId = _employeePick.Current.Id;
+        }
+        else
+        {
+            _dialogService.ShowMessageBox("No Employee was selected!");
+        }
     }
 }

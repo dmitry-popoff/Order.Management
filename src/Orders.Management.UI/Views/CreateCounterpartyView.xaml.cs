@@ -72,7 +72,7 @@ public partial class CreateCounterpartyView : UserControl
     {
         // ^[a-zA-Z]+$ matches only English uppercase and lowercase letters
         // Use ^[\p{L}]+$ instead if you want to support global/accented letters (like é, ü, ñ)
-        return Regex.IsMatch(text, "^[a-zA-Z]+$");
+        return Regex.IsMatch(text, "^[\\p{L}]+$");
     }
     private bool IsTextDigitsOnly(string text)
     {
