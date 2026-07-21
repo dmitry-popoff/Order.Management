@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Orders.Management.UI.Views"
+             xmlns:ctrl="clr-namespace:Orders.Management.UI.Views.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -15,18 +16,14 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="20">
+            
             <TextBlock Text="Enter Surname:" />
-            <TextBox Text="{Binding Surname}" 
-                PreviewTextInput="LettersOnlyTextBox_PreviewTextInput" 
-                DataObject.Pasting="LettersOnlyTextBox_Pasting"/>
+            <ctrl:EnterNameTextBox NameText="{Binding Surname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             <TextBlock Text="Enter Name:" />
-            <TextBox Text="{Binding Name}"                 
-                PreviewTextInput="LettersOnlyTextBox_PreviewTextInput" 
-                DataObject.Pasting="LettersOnlyTextBox_Pasting"/>
+            <ctrl:EnterNameTextBox NameText="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             <TextBlock Text="Enter Patronymic:" />
-            <TextBox Text="{Binding Patronymic}"
-                PreviewTextInput="LettersOnlyTextBox_PreviewTextInput" 
-                DataObject.Pasting="LettersOnlyTextBox_Pasting"/>
+            <ctrl:EnterNameTextBox NameText="{Binding Patronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            
             <StackPanel Orientation="Horizontal" Margin="10">
                 <RadioButton Content="Worker" 
                              IsChecked="{Binding Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,

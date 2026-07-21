@@ -67,7 +67,7 @@
                   SelectionMode="Single">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding FullName}" Width="100"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding FullName}" Width="200"/>
                     </GridView>
                 </ListView.View>
             </ListView>

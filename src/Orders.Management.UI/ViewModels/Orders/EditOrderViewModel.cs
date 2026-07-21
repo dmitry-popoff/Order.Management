@@ -28,7 +28,7 @@ public partial class EditOrderViewModel: ObservableValidator
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [CustomValidation(typeof(EditOrderViewModel), nameof(ValidateSum))]
-    private decimal _sum;
+    private string _sum;
     [Required]
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -58,10 +58,13 @@ public partial class EditOrderViewModel: ObservableValidator
         return new("Reference Id is incorrect");
     }
 
-    public static ValidationResult ValidateSum(decimal sum, ValidationContext context)
+    public static ValidationResult ValidateSum(string sumStr, ValidationContext context)
     {
+        bool isValid = decimal.TryParse(sumStr, out decimal sum);
+        if (!isValid) return new ValidationResult("Invalid decimal format!");
+
         var instance = (EditOrderViewModel)context.ObjectInstance;
-        bool isValid = OrderValidator.ValidateSum(sum, out var error);
+        isValid = OrderValidator.ValidateSum(sum, out var error);
 
         if (isValid)
         {
@@ -70,11 +73,10 @@ public partial class EditOrderViewModel: ObservableValidator
         return new(error?.Message ?? "Order sum is incorrect");
     }
 
-
     public void Init(OrderDetailsModel order)
     {
         Details = order;
-        Sum = order.Sum;
+        Sum = order.Sum.ToString();
         CounterpartyTitle = order.Counterparty.Title;
         TaxpayerId = order.Counterparty.TaxpayerIdentificationNumber;
         EmployeeId = order.Employee?.Id ?? -1;
@@ -99,7 +101,7 @@ public partial class EditOrderViewModel: ObservableValidator
 
     private void SetupEntity()
     {
-        Details.Sum = Sum;
+        Details.Sum = decimal.Parse(Sum);
         Details.CounterpartyId = CounterpartyId;
         Details.EmployeeId = EmployeeId;
     }
@@ -136,7 +138,7 @@ public partial class EditOrderViewModel: ObservableValidator
 
         using var ctx = new CancellationTokenSource(TimeSpan.FromSeconds(2));
 
-        var result = await service.Update(Details.Id, EmployeeId, Sum, ctx.Token);
+        var result = await service.Update(Details.Id, EmployeeId, decimal.Parse(Sum), ctx.Token);
 
         IsSaved = result.IsSuccess;
 

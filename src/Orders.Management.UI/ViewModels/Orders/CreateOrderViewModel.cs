@@ -32,7 +32,7 @@ public partial class CreateOrderViewModel : ObservableValidator
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [CustomValidation(typeof(CreateOrderViewModel), nameof(ValidateSum))]
-    private decimal _sum;
+    private string _sum;
     [Required]
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -64,10 +64,13 @@ public partial class CreateOrderViewModel : ObservableValidator
         return new("Reference Id is incorrect");
     }
 
-    public static ValidationResult ValidateSum(decimal sum, ValidationContext context)
+    public static ValidationResult ValidateSum(string sumStr, ValidationContext context)
     {
+        bool isValid = decimal.TryParse(sumStr, out decimal sum);
+        if (!isValid) return new ValidationResult("Invalid decimal format!");
+
         var instance = (CreateOrderViewModel)context.ObjectInstance;
-        bool isValid = OrderValidator.ValidateSum(sum, out var error);
+        isValid = OrderValidator.ValidateSum(sum, out var error);
 
         if (isValid)
         {
@@ -104,7 +107,7 @@ public partial class CreateOrderViewModel : ObservableValidator
 
     private void SetupEntity()
     {
-        Details.Sum = Sum;
+        Details.Sum = decimal.Parse(Sum);
         Details.CounterpartyId = CounterpartyId;
         Details.EmployeeId = EmployeeId;
     }
